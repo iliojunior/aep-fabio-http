@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Aep Fábio das Loucuras</title>
+    <style media="screen">
+      .no-circle {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body ng-controller="IndexController">
+    <form ng-submit="addNote(newNote)" ng-hide="noteEdition">
+      <div>
+        <label for="title">Title: </label>
+        <input type="text" name="title" ng-model="newNote.title">
+      </div>
+      <div>
+        <label for="description">Description: </label>
+        <input type="text" name="title" ng-model="newNote.description">
+      </div>
+      <div>
+        <button type="submit" name="button">Cadastrar novo</button>
+      </div>
+    </form>
+
+    <form ng-submit="putNote(noteEdition)" ng-show="noteEdition">
+      <div>
+        <label for="title">Title: </label>
+        <input type="text" name="title" ng-model="noteEdition.title">
+      </div>
+      <div>
+        <label for="description">Description: </label>
+        <input type="text" name="title" ng-model="noteEdition.description">
+      </div>
+      <div>
+        <label for="description">Status: </label>
+        <input type="text" name="title" ng-model="noteEdition.status">
+      </div>
+      <div>
+        <button type="submit" name="button">Salvar</button>
+      </div>
+    </form>
+
+    <p>Total: {{notes.length}}</p>
+
+    <ul>
+      <li ng-repeat="note in notes">
+        <span>ID: {{note._id}}</span>
+        <p class="no-circle">Status: {{note.status}}</p>
+        <p class="no-circle">Title: {{note.title}}</p>
+        <p class="no-circle">Description: {{note.description}}</p>
+        <button type="button" name="button" ng-click="habilitarEdicao(note)">Editar</button>
+        <button type="button" name="button" ng-click="deleteNote(note._id)">Excluir</button>
+        <br>
+        <br>
+      </li>
+    </ul>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
